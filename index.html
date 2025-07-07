@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,37 +10,19 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        primary: '#3B82F6',
-                        secondary: '#6366F1',
-                        accent: '#8B5CF6',
-                        dark: '#1E293B',
-                        light: '#F8FAFC'
-                    },
-                    fontFamily: {
-                        inter: ['Inter', 'sans-serif'],
-                    },
+                    colors: {primary: '#3B82F6', secondary: '#6366F1', accent: '#8B5CF6', dark: '#1E293B', light: '#F8FAFC' },
+                    fontFamily: { inter: ['Inter', 'sans-serif'], },
                 },
             }
         }
     </script>
     <style type="text/tailwindcss">
         @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
-            .sidebar-link {
-                @apply block py-2 px-4 rounded-lg transition-all duration-200 hover:bg-primary/10;
-            }
-            .sidebar-link.active {
-                @apply bg-primary/20 text-primary font-medium;
-            }
-            .article-content p {
-                @apply mb-4 leading-relaxed;
-            }
-            .article-content h2 {
-                @apply text-2xl font-bold mb-3 mt-6 text-dark;
-            }
+            .content-auto { content-visibility: auto; }
+            .sidebar-link { @apply block py-2 px-4 rounded-lg transition-all duration-200 hover:bg-primary/10; }
+            .sidebar-link.active { @apply bg-primary/20 text-primary font-medium; }
+            .article-content p { @apply mb-4 leading-relaxed; }
+            .article-content h2 { @apply text-2xl font-bold mb-3 mt-6 text-dark; }
         }
   </style>
 </head>
@@ -50,73 +31,24 @@
     <div class="flex flex-col md:flex-row min-h-screen">
         <!-- 侧边栏 -->
         <aside
-            class="bg-white shadow-md md:w-64 md:fixed md:h-full overflow-y-auto transition-all duration-300 ease-in-out z-10 transform md:translate-x-0"
-            id="sidebar">
-            <div class="p-4 border-b border-gray-200">
-                <h1 class="text-2xl font-bold text-primary">我的博客</h1>
-            </div>
+            class="bg-white shadow-md md:w-64 md:fixed md:h-full overflow-y-auto transition-all duration-300 ease-in-out z-10 transform md:translate-x-0" id="sidebar">
+            <div class="p-4 border-b border-gray-200"><h1 class="text-2xl font-bold text-primary">我的博客</h1></div>
             <nav class="p-4">
                 <ul class="space-y-1">
                     <a href="page/x86.html" class="sidebar-link active">x86架构</a>
-                    <li><a href="#" class="sidebar-link">1 目标</a></li>
-                    <li><a href="#" class="sidebar-link">2 技术</a></li>
-
+                    <li><a href="page/1.html" class="sidebar-link">1 目标</a></li>
+                    <li><a href="page/2.html" class="sidebar-link">2 技术</a></li>
                 </ul>
             </nav>
         </aside>
-
+        
         <!-- 主内容区 -->
         <main class="flex-1 md:ml-64">
-            <!-- 删除了顶部导航 -->
             <!-- 文章内容区 -->
             <div class="container mx-auto px-4 py-6">
-                <div id="article-container" class="bg-white rounded-xl shadow-md p-6 transition-all duration-300">
-                    <!-- 所有示例文章已删除 -->
-                </div>
+               
             </div>
         </main>
     </div>
-
-    <!-- JavaScript -->
-    <script>
-        // 侧边栏切换
-        document.getElementById('sidebar-toggle').addEventListener('click', function () {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('-translate-x-full');
-        });
-
-        // 文章切换
-        document.querySelectorAll('.sidebar-link').forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                // 移除所有活动状态
-                document.querySelectorAll('.sidebar-link').forEach(l => {
-                    l.classList.remove('active');
-                });
-
-                // 添加当前活动状态
-                this.classList.add('active');
-
-                const articleId = this.getAttribute('data-article');
-                loadArticle(articleId);
-            });
-        });
-
-        // 加载文章
-        function loadArticle(articleId) {
-            // 隐藏所有文章
-            document.querySelectorAll('.article-content').forEach(article => {
-                article.style.display = 'none';
-            });
-
-            // 显示选中的文章
-            const article = document.getElementById(articleId);
-            if (article) {
-                article.style.display = 'block';
-            }
-        }
-    </script>
 </body>
-
 </html>
